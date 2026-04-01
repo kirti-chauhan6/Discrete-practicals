@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void findSolutions(int n, int C, vector<int> &solution, int index) {
+    if (index == n - 1) {
+        solution[index] = C;
+
+        for (int i = 0; i < n; i++)
+            cout << solution[i] << " ";
+        cout << endl;
+        return;
+    }
+
+    for (int i = 0; i <= C; i++) {
+        solution[index] = i;
+        findSolutions(n, C - i, solution, index + 1);
+    }
+}
+
+int main() {
+    int n, C;
+    cin >> n >> C;
+
+    vector<int> solution(n);
+    findSolutions(n, C, solution, 0);
+
+    return 0;
+}
